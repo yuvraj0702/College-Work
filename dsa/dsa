@@ -1,0 +1,36 @@
+
+#include <stdio.h>
+
+int main(void)
+{
+    int arr[10] = {1,2,3,4,5,4,7,4,9};
+    printf("Enter place where to insert: ");
+    int insert = 0;
+    int place = 0;
+    scanf("%d",&insert);
+    printf("What to insert? : ");
+    scanf("%d",&place);
+    int temp = 0;
+    int temp2 = 0;
+    for(int i = 0;i < 10;i++)
+    {
+        if(i == insert)
+        {
+            temp = arr[i];
+            arr[i] = place;
+
+            for(int j = i+1 ; j < 10;j++)
+            {
+                temp2 = arr[j];
+                arr[j] = temp;
+                temp = temp2;
+            }
+
+        }
+
+          }
+          for(int k = 0; k < 10;k++)
+          {
+            printf("%d\n",arr[k]);
+          }
+}
