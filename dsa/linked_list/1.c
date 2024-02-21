@@ -35,5 +35,7 @@ int main() {
      //printing node-value
      head=one;
      printlinkedlist(head);
+     free (head);
+     free (two);
+     free (three);
      }
-     
