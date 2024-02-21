@@ -17,9 +17,9 @@ void printList(Node* node) {
 }
 
 int main() {
-    Node* head = NULL;
-    Node* second = NULL;
-    Node* third = NULL;
+    Node* head = 1;
+    Node* second = 2;
+    Node* third = 3;
 
     head = (Node*)malloc(sizeof(Node));
     second = (Node*)malloc(sizeof(Node));
