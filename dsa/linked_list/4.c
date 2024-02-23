@@ -46,20 +46,21 @@ void createnodelist(int n){
                 tmp=tmp->nextptr;
             }
         }
-    }}
-               void displaylist()
-               {
-                struct node*tmp;
-                if (stnode==NULL){
-                    printf("list is empty.");
-                }else{
-                    tmp=stnode;
-                    while(tmp!=NULL){
-                        printf("data=%d\n",tmp->num);
-                        tmp=tmp->nextptr;
-                    }
-                }
-               }
+    }
+}
+void displaylist()
+{
+    struct node*tmp;
+    if (stnode==NULL){
+        printf("list is empty.");
+    }else{
+        tmp=stnode;
+        while(tmp!=NULL){
+            printf("data=%d\n",tmp->num);
+            tmp=tmp->nextptr;
+        }
+    }
+}
 
                 
                
