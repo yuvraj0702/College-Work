@@ -1,4 +1,3 @@
-
 def euclidean_distance(point1, point2):
     distance = ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2) ** 0.5
     return distance
@@ -15,7 +14,7 @@ def angle_between_lines(point1, point2, point3, point4):
 def is_regular_quadrilateral(distances):
     return all(distance == distances[0] for distance in distances)
 
-if __name__ == "__main__":
+def main():
     # Define four points
     point1 = (1, 1)
     point2 = (4, 5)
@@ -45,3 +44,6 @@ if __name__ == "__main__":
         print("The quadrilateral is regular.")
     else:
         print("The quadrilateral is not regular.")
+
+
+main()
