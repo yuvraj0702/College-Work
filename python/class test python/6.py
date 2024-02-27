@@ -1,4 +1,4 @@
-#write a program that creates tuples with two fields referring to x and y coordinates in a 2-d cartesian space.create four such variables denoting four points in the plane.determine and print the euclidean distances between these points and the lines of equation passing through the pairs of points using a user degined function. the same function must print the angle between the lines too.based on the length of sides computed by this function,you should invoke another function from within the current function that determines whether the quadrilateral formed is a regular one.
+
 def euclidean_distance(point1, point2):
     distance = ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2) ** 0.5
     return distance
