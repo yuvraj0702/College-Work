@@ -146,5 +146,3 @@ void Display (node * head)
     }
 
 }
-
-
