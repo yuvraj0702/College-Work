@@ -21,7 +21,7 @@ void Display (node * head);
 int main()
 {
     //defining nodes ;
-    struct node * head;
+    struct node * head; 
     struct node * first;
     struct node * second;
     struct node * third;
