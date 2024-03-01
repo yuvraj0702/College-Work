@@ -1,25 +1,27 @@
-def power_set(input_set):
-    if len(input_set) == 0:
-        return [[]]  # Base case: Power set of an empty set is a set containing an empty set
-    else:
-        element = input_set.pop()  # Remove one element from the set
-        subsets = power_set(input_set)  # Recursively generate power set for the remaining set
-        new_subsets = []
-        for subset in subsets:
-            new_subset = subset.copy()
-            new_subset.append(element)  # Include the removed element in each subset
-            new_subsets.append(new_subset)
-        return subsets + new_subsets
+def power_set(s):
+    """
+    Function to compute the power set of a set using recursion.
+    """
+    if not s:
+        return {frozenset()}  # return a set containing an empty set
+
+    element = s.pop()  # remove an element from the set
+    subsets = power_set(s)  # compute the power set of the remaining set recursively
+    return subsets.union({subset | {element} for subset in subsets})
+
+def input_set():
+    """
+    Function to take set input from the user.
+    """
+    elements = input("Enter the elements of the set separated by spaces: ").split()
+    return {elem for elem in elements}
 
 def main():
-    user_input = input("Enter the elements of the set separated by spaces: ")
-    input_set = set(user_input.split())
-    input_set = list(map(int, input_set))  # Convert the input to integers if needed
-    input_set.sort()  # Sort the set for consistent output
-    result = power_set(input_set)
-    print("Power set of", input_set, "is:")
-    for subset in result:
+    user_set = input_set()
+    user_power_set = power_set(user_set)
+    print("Power set of the entered set:")
+    for subset in user_power_set:
         print(subset)
 
-if __name__ == "__main__":
-    main()
+
+main()
