@@ -1,7 +1,5 @@
 def power_set(s):
-    """
-    Function to compute the power set of a set using recursion.
-    """
+
     if not s:
         return {frozenset()}  # return a set containing an empty set
 
