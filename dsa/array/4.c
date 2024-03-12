@@ -72,7 +72,7 @@ void bubbleSortAscending(int arr[], int size) {
             }
         }
     }
-}
+} 
 
 void bubbleSortDescending(int arr[], int size) {
     for (int i = 0; i < size - 1; i++) {
