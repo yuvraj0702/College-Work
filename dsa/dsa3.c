@@ -13,5 +13,5 @@ void main()
     printf("printing the students details...\n");
     for(i=0;i<3;i++)
     {
-        printf("%s%d%f\n",name[i],roll_number; 
-    }
+        printf("%s%d%f\n"),name[i]; 
+    } 
