@@ -6,7 +6,7 @@ struct node{
     struct node* next;
 };
 
-void create_linked_list(struct node* head,int n)
+void create_linked_list(struct node** head, int n)
 {
     struct node *fnNode,*tmp;
     fnNode = (struct node*)malloc(sizeof(struct node));
@@ -14,19 +14,31 @@ void create_linked_list(struct node* head,int n)
     if(fnNode == NULL)
     {
         printf("The memory has not been allocated");
+        return;
     }
 
-    for(int i=0;i<n;i++)
+    *head = fnNode;
+
+    for(int i=0; i<n; i++)
     {
-      int val;
-      pritnf("Enter the values of linked list");
-      scanf("%d",&val);
+        int val;
+        printf("Enter the values of linked list: ");
+        scanf("%d", &val);
 
-      fnNode->data = val;
-      fnNode->next = NULL;
+        fnNode->data = val;
+        fnNode->next = NULL;
 
-      tmp->next = fnNode;
-      fnNode = fnNode->next;
+        if(i == n - 1)
+            break;
+
+        tmp = fnNode;
+        fnNode = (struct node*)malloc(sizeof(struct node));
+        if(fnNode == NULL)
+        {
+            printf("The memory has not been allocated");
+            return;
+        }
+        tmp->next = fnNode;
     }
 }
 
@@ -34,200 +46,140 @@ void display(struct node* head)
 {
     while(head != NULL)
     {
-        printf("%d",head->data);
+        printf("%d -> ", head->data);
         head = head->next;
     }
+    printf("NULL\n");
 }
 
-void create_node_at_beginning(struct node* head)
+void create_node_at_beginning(struct node** head)
 {
     struct node *new_node;
-
     new_node = (struct node*)malloc(sizeof(struct node));
     
-    int val;
-    pritnf("Enter the value of the value to be replaced");
-    scanf("%d",&val);
-
-    new_node->data = val;
-    new_node->next = head;
-    head = new_node; 
-}
-
-void create_node_at_end(struct node* head)
-{
-    struct node *new_node,*last;
-
-    new_node = (struct node*)malloc(sizeof(struct node));
-    last = head;
-    
-    int val;
-    pritnf("Enter the value of the value to be replaced");
-    scanf("%d",&val);
-
-    new_node->data = val;
-    new_node->next = NULL;
-
-    while(last != NULL)
+    if(new_node == NULL)
     {
-        last = last->next; 
+        printf("The memory has not been allocated");
+        return;
     }
-    
-    last = new_node;
-}
-
-void create_node_before_a_node(struct node* head)
-{
-    struct node* new_node;
-    struct node* ptr=head;
-    new_node = (struct node*)malloc(sizeof(struct node));
 
     int val;
-    pritnf("Enter the value of the value to be replaced");
-    scanf("%d",&val);
+    printf("Enter the value of the node to be inserted at the beginning: ");
+    scanf("%d", &val);
 
-    int pos;
-    printf("Enter the position at which node must be added");
-    scanf("%d",&pos);
+    new_node->data = val;
+    new_node->next = *head;
+    *head = new_node; 
+}
+
+void create_node_at_end(struct node** head)
+{
+    struct node *new_node, *last;
+
+    new_node = (struct node*)malloc(sizeof(struct node));
+    if(new_node == NULL)
+    {
+        printf("The memory has not been allocated");
+        return;
+    }
+
+    int val;
+    printf("Enter the value of the node to be inserted at the end: ");
+    scanf("%d", &val);
 
     new_node->data = val;
     new_node->next = NULL;
 
+    if (*head == NULL) {
+        *head = new_node;
+        return;
+    }
+
+    last = *head;
+    while(last->next != NULL)
+        last = last->next;
+    
+    last->next = new_node;
+}
+
+void create_node_before_a_node(struct node** head)
+{
+    struct node *new_node, *ptr, *prev;
+    new_node = (struct node*)malloc(sizeof(struct node));
+    if(new_node == NULL)
+    {
+        printf("The memory has not been allocated");
+        return;
+    }
+
+    int val, pos;
+    printf("Enter the value of the node to be inserted: ");
+    scanf("%d", &val);
+
+    printf("Enter the position before which the node should be inserted: ");
+    scanf("%d", &pos);
+
+    new_node->data = val;
+    new_node->next = NULL;
+
+    ptr = *head;
+    prev = NULL;
     pos--;
-    while(pos!=1)
+    while(pos != 0 && ptr != NULL)
     {
+        prev = ptr;
         ptr = ptr->next;
-        pos--;  
+        pos--;
     }
 
-    new_node->next = ptr->next;
-    ptr->next = new_node;
-}
-
-void create_node_after_a_node(struct node* head)
-{
-    struct node* new_node;
-    struct node* ptr=head;
-
-    int val;
-    printf("Enter the value to be entered");
-    scanf("%d",&val);
-
-    int pos;
-    printf("Enter the position at which the node to enter");
-    scanf("%d",&pos);
-
-    new_node->data = val;
-    new_node->next = NULL;
-
-    for(int i=0;i<pos;i++)
+    if(prev == NULL)
     {
-       ptr = ptr->next;
+        new_node->next = *head;
+        *head = new_node;
     }
-
-    new_node->next = ptr->next;
-    ptr->next = new_node;
-}
-
-void delete_a_node_at_beginning(struct node* head)
-{
-    struct node* n=head;
-    struct node* current=head;
-
-    int position;
-    printf("Enter the position at which node must be deleted");
-    scanf("%d",&position);
-
-    if(head == NULL)
+    else
     {
-        printf("The list is already empty");
-    }    
-
-    else if(position == 1)
-    {
-        head = current->next;
-        free(current);
-        current == NULL;
+        prev->next = new_node;
+        new_node->next = ptr;
     }
 }
-    
-void delete_a_node_at_end(struct node* head)
-{
-    struct node* n = head;
-    struct node* current = head;
-
-    int position;
-    printf("Enter the position at which the node must be deleted");
-    scanf("%d",&position);
-
-    while(position != 1)
-    {
-        n->next = current->next;
-        current = current->next;
-        position--;
-    }
-    n->next = current->next;
-    free(current);
-    current = NULL;
-}
-
-void delete_entire_list(struct node* head)
-{
-    free(head);
-}
-
 
 int main()
 {
-    struct node* head;
+    struct node* head = NULL;
 
     int n;
-    printf("Enter the number of elements in linked list");
-    scanf("%d",&n);
+    printf("Enter the number of elements in the linked list: ");
+    scanf("%d", &n);
+
+    create_linked_list(&head, n);
+
+    printf("Initial linked list: ");
+    display(head);
 
     int op;
-    printf("Enter the option");
-    scanf("%d",&op);
+    printf("Enter the option: ");
+    scanf("%d", &op);
 
-    int opt;
-    printf("Enter the option to be selected");
-    scanf("%d",&opt);
-
-    while(op != 0);
-    {
-        switch(opt){
+    switch(op) {
         case 1:
-        create_linked_list(&head,n);
+            create_node_at_beginning(&head);
+            printf("Linked list after inserting at the beginning: ");
+            display(head);
+            break;
         case 2:
-        create_node_at_beginning(head);
-        break;
+            create_node_at_end(&head);
+            printf("Linked list after inserting at the end: ");
+            display(head);
+            break;
         case 3:
-        create_node_at_end(head);
-        break;
-        case 4:
-        create_node_before_a_node(head);
-        break;
-        case 5:
-        create_node_after_a_node(head);
-        break;
-        case 6:
-        delete_a_node_at_beginning(head);
-        break;
-        case 7:
-        delete_a_node_at_end(head);
-        break;
-        case 8:
-        break;
-        case 9:
-        break;
-        case 10:
-        delete_entire_list(head);
-        break;
-        case 11:
-        break;
-
-     }
+            create_node_before_a_node(&head);
+            printf("Linked list after inserting before a node: ");
+            display(head);
+            break;
+        default:
+            printf("Invalid option\n");
     }
 
- 
-} 
+    return 0;
+}
