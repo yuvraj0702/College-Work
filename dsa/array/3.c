@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include<stdio.h>
 int main(void)
 {
@@ -16,7 +16,6 @@ int main(void)
         printf("%d",numbers[i]);
          
     }
-=======
 #include<stdio.h>
 int main(void)
 {
@@ -34,5 +33,5 @@ int main(void)
         printf("%d",numbers[i]);
          
     }
->>>>>>> 9d7a52511b127bbcc3be0333be01401cbb37a239
+
 }

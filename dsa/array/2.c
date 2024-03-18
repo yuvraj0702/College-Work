@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include<stdio.h>
 int main()
 {
@@ -31,6 +31,7 @@ int main()
     break;
 
     default:
+
     printf("Enter a valid output");
     }
 =======
