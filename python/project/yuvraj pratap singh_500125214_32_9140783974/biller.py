@@ -14,11 +14,8 @@ def main():
     
     name = name.capitalize()
     name2 = name2.capitalize()
-  
     prices = []
-    
-
-    running = True
+    running = True 
     with open(name,"w") as file:
         while running:
             try:
@@ -60,7 +57,3 @@ def discount(amount,percent):
     return amount * ((100-percent)/100)
     
 main()
-
-
-
-
