@@ -16,6 +16,7 @@ def main():
     name2 = name2.capitalize()
     prices = []
     running = True 
+
     with open(name,"w") as file:
         while running:
             try:
